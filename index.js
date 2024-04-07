@@ -1,11 +1,17 @@
 const express = require('express'); 
 const app = express(); 
-const PORT = 8080; 
 const bodyParser = require('body-parser');
 const Routes = require('./Routes/routes')
 const APILogs = require('./Routes/service')
-app.use(bodyParser.json());
+const cors = require('cors');
+
 let APIlogsdata = []
+const PORT = 8080; 
+
+app.use(bodyParser.json());
+app.use(cors({
+    origin: "*"
+}));
 
 app.get('/', (req, res)=>{  // to check whether server is running or not
     res.status(200); 
