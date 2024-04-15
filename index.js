@@ -1,7 +1,8 @@
 const express = require('express'); 
 const app = express(); 
 const bodyParser = require('body-parser');
-const Routes = require('./Routes/routes')
+const Routes = require('./Routes/routes');
+const emailRoutes = require('./Routes/emailRoute');
 const APILogs = require('./Routes/service')
 const cors = require('cors');
 
@@ -26,5 +27,7 @@ app.use('/ApiLogs', (req, res) => { //to view the API Logs
     res.json(JSON.stringify(APIlogsdata))
 })
 app.use('/API', Routes);
+
+app.use('/email', emailRoutes);
 
 app.listen(PORT, ()=>console.log('Server is running!!!!')); 
