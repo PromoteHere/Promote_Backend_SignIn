@@ -21,7 +21,7 @@ router.post('/generate-otp', async (req, res) => {
             name: "Promote",
             address: process.env.USER
         },
-        to: ["hariharanshankar99@gmail.com"],
+        to: [email],
         subject: "Your OTP for verification",
         text: `Your OTP is ${otp}`,
         html: `<b>Your OTP is ${otp}</b>`,
@@ -42,10 +42,10 @@ router.post('/generate-otp', async (req, res) => {
             await transporter.sendMail(mailOptions);
         }
         generateOTP(transporter, mailOptions)
-        // otps[email] = {
-        //     otp: otp,
-        //     expiry: Date.now() + 60000 // OTP expires after 60 seconds
-        // };
+        otps[email] = {
+            otp: otp,
+            expiry: Date.now() + 300000 // OTP expires after 5 mins
+        };
         res.send("OTP sent successfully.");
     } catch (error) {
         console.error(error);
