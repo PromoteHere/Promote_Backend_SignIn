@@ -15,6 +15,7 @@ const otps = {};
 
 router.post('/generate-otp', async (req, res) => {
     const email = req.body.email;
+    const signedUpUser = req.body.newuser;
     const otp = generateOTP();
     const mailOptions = {
         from: {
@@ -24,7 +25,18 @@ router.post('/generate-otp', async (req, res) => {
         to: [email],
         subject: "Your OTP for verification",
         text: `Your OTP is ${otp}`,
-        html: `<b>Your OTP is ${otp}</b>`,
+        html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="text-align: center; color: #333;">Your OTP for verification</h2>
+            <p style="font-size: 16px;">Dear ${signedUpUser},</p>
+            <p style="font-size: 16px;">Your OTP for verification is: <strong>${otp}</strong></p>
+            <p style="font-size: 16px;">Please use this OTP to complete the verification process.</p>
+            <p style="font-size: 16px;">This OTP is valid for 5 minutes.</p>
+            <div style="text-align: center; margin-top: 20px;">
+                <img src="https://i.ibb.co/CMgscCm/Promote-logo.png" alt="Company Logo" style="max-width: 150px;">
+            </div>
+        </div>
+    `,
     };
 
     try {
