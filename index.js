@@ -30,4 +30,6 @@ app.use('/API', Routes);
 
 app.use('/email', emailRoutes);
 
+app.use('/images', express.static('photos'));
+
 app.listen(PORT, ()=>console.log('Server is running!!!!')); 

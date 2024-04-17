@@ -23,19 +23,21 @@ router.post('/generate-otp', async (req, res) => {
             address: process.env.USER
         },
         to: [email],
-        subject: "Your OTP for verification",
+        subject: "Welcome to Promote!. Your OTP for verification",
         text: `Your OTP is ${otp}`,
         html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="text-align: center; color: #333;">Your OTP for verification</h2>
-            <p style="font-size: 16px;">Dear ${signedUpUser},</p>
-            <p style="font-size: 16px;">Your OTP for verification is: <strong>${otp}</strong></p>
-            <p style="font-size: 16px;">Please use this OTP to complete the verification process.</p>
-            <p style="font-size: 16px;">This OTP is valid for 5 minutes.</p>
-            <div style="text-align: center; margin-top: 20px;">
-                <img src="https://i.ibb.co/CMgscCm/Promote-logo.png" alt="Company Logo" style="max-width: 150px;">
+        <div style="background-color: #7844c4; padding: 70px;">
+                <div style="background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 10px ;">
+                    <img src="http://localhost:8080/images/promote.jpg" alt="Promote Logo" style="width: 100%;">
+                    <h2 style="color: #222; font-size: 18px; margin-top: 20px; text-align: center">Dear ${signedUpUser},</h2>
+                    <h2 style="color: #222; font-size: 18px; margin-top: 20px; text-align: center">Here is your One Time Password</h2>
+                    <h4 style="color: #222; font-size: 18px; margin-top: 20px; text-align: center; font-weight:100;">to validate your email address</h4>
+                    <h1 style="text-align: center">${otp}</h1>
+                    <h4 style="color: #Bf2f2a; font-size: 18px; margin-top: 20px; text-align: center; font-weight:100;">Valid for 5 minutes only</h4>
+                    
             </div>
-        </div>
+            <div style="padding-top: 20px; text-align: center;"> <a  style="color: #D3D3D3; font-size: 18px; margin-top: 20px; text-align: center; font-weight:100; cursor: pointer;">Terms & Conditions  |</a> <a  style="color: #D3D3D3; font-size: 18px; margin-top: 20px; text-align: center; font-weight:100; cursor: pointer;"> Contact Us </a></div>
+            </div>
     `,
     };
 
